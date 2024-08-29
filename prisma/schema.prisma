@@ -1,0 +1,40 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum MeasureType {
+  WATER
+  GAS
+}
+
+model Customer {
+  uuid      String   @id @default(uuid())
+  code      String   @unique @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  measure Measure[]
+
+  @@map("customers")
+}
+
+model Measure {
+  uuid            String      @id @default(uuid())
+  measureType     MeasureType
+  measureValue    Float
+  confirmedValue  Boolean     @default(false)
+  imageUrl        String
+  measureDatetime DateTime
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+
+  customerCode String   @map("customers")
+  customer     Customer @relation(fields: [customerCode], references: [code])
+
+  @@map("measures")
+}

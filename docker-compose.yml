@@ -1,0 +1,19 @@
+version: '3.8'
+
+volumes:
+  pg_data:
+
+services:
+  postgres:
+    container_name: utility-bills-reader-pg
+    image: postgres
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: docker
+      POSTGRES_DB: utility-bills-reader
+      PGDATA: /data/postgres
+    volumes:
+      - pg_data:/data/postgres
+

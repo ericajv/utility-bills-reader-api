@@ -17,3 +17,17 @@ services:
     volumes:
       - pg_data:/data/postgres
 
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: utility-bills-reader-api
+    command: npm run start:dev
+    environment:
+      - PORT=${PORT:-3333}
+    ports:
+      - '3333:3333'
+    depends_on:
+      - postgres
+    volumes:
+      - ./:/app

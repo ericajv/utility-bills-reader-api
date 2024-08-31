@@ -13,8 +13,7 @@ import { GeminiService } from './services/gemini.service';
 @Module({
   imports: [
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'public'),
-      exclude: ['/api/(.*)'],
+      rootPath: join(__dirname, '..', 'public')
     }),
   ],
   controllers: [UploadController, ConfirmationController, CustomerController],

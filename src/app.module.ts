@@ -8,6 +8,7 @@ import { CustomerService } from './services/customer.service';
 import { PrismaService } from './services/prisma.service';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'node:path';
+import { GeminiService } from './services/gemini.service';
 
 @Module({
   imports: [
@@ -17,7 +18,7 @@ import { join } from 'node:path';
     }),
   ],
   controllers: [UploadController, ConfirmationController, CustomerController],
-  providers: [UploadService, ConfirmationService, CustomerService, PrismaService],
+  providers: [UploadService, ConfirmationService, CustomerService, PrismaService, GeminiService],
 })
 
 export class AppModule {}
